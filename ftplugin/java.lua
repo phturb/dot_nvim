@@ -11,7 +11,6 @@ local workspace = lsp_home .. "/workspace/" .. vim.fn.fnamemodify(root_dir, ':p:
 local cmd = {
   java_home .. "/bin/java",
   "-javaagent:" .. lombok,
-  "-Xbootclasspath/a:" .. lombok,
   "-Declipse.application=org.eclipse.jdt.ls.core.id1",
   "-Dosgi.bundles.defaultStartLevel=4",
   "-Declipse.product=org.eclipse.jdt.ls.core.product",
