@@ -62,7 +62,8 @@ vim.opt.updatetime = 400
 vim.opt.wrap = false
   -- Backup disable on buffer write
 vim.opt.writebackup = false
-
+  -- Coloum ruller
+vim.opt.colorcolumn = "125"
 
 -- g
   -- Use space as leader key

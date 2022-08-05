@@ -1,4 +1,8 @@
-require("utils")
+local utils = require("utils")
+
+local nmap = utils.nmap
+local map = utils.map
+local vmap = utils.vmap
 
 -- General prefix
 local file_prefix = "f"

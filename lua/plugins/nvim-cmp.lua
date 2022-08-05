@@ -95,6 +95,8 @@ return function()
       { name = "buffer" },
       { name = "nvim_lua" },
       { name = "path" },
+      { name = "cmdline" },
+      { name = "emoji" }
     },
   })
 end

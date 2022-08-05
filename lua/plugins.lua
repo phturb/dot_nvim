@@ -158,10 +158,14 @@ packer.startup(
     }
 
     -- cmd Line Completion source
-    use { "hrsh7th/cmp-cmdline" }
+    use { "hrsh7th/cmp-cmdline",
+      config = function() require("cmp").setup.cmdline(":", { sources = { name = "cmdline" } } ) end
+    }
 
         -- emoji Completion
-    use { "hrsh7th/cmp-emoji" }
+    use { "hrsh7th/cmp-emoji",
+      after = "cmp-path"
+    }
 
     -- Built-in LSP
     use { "neovim/nvim-lspconfig",
