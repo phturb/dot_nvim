@@ -11,7 +11,7 @@ function M.map(mode, shortcut, command, desc)
 end
 
 function M.bufmap(bufnr, mode, shortcut, command, desc)
-  vim.api.nvim_buf_set_keymap(bufnr, mode, shortcut, command, { noremap = true, silent = true, desc = desc })
+  vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true, desc = desc, buffer = bufnr })
 end
 
 function M.nmap(shortcut, command, desc)

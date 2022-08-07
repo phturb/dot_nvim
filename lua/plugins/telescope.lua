@@ -6,6 +6,9 @@ return function()
   telescope.load_extension("aerial")
   -- Requires telescope-fzf-native.nvim
   telescope.load_extension("fzf")
+  -- Requires telescope-dap.nvim 
+  telescope.load_extension('dap')
+
   local actions = require("telescope.actions")
   telescope.setup({
     defaults = {
@@ -92,7 +95,11 @@ return function()
       },
     },
     pickers = {},
-    extensions = {},
+    extensions = {
+      { "ui-select", require("telescope.themes").get_dropdown {} },
+    },
   })
+  -- This needs to be after setup
+  telescope.load_extension("ui-select")
 end
 

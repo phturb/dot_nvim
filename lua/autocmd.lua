@@ -60,3 +60,12 @@ vim.api.nvim_create_autocmd( {"VimEnter"}, {
     end
   end,
 })
+
+-- Toggleterm
+vim.api.nvim_create_augroup("term_group", { clear = true })
+vim.api.nvim_create_autocmd( {"TermOpen"}, {
+  desc = "Set mapping to terminal on open",
+  group = "term_group",
+  pattern = {"term://*"},
+  callback = function() _G.set_terminal_keymaps() end,
+})

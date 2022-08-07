@@ -1,10 +1,13 @@
+-- Require "mfussenegger/nvim-jdtls"
 local root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})
 local home = os.getenv('HOME')
 
 local java_home = os.getenv('JAVA_HOME')
 local lsp_home = home .. "/.local/share/nvim/lsp"
+-- This needs to be manually installed - https://download.eclipse.org/jdtls/milestones/?d
 local jar = lsp_home .. "/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
 local jdt_config = lsp_home .. "/jdt-language-server/config_mac"
+-- This needs to be manually installed - https://projectlombok.org/download
 local lombok = lsp_home .. "/jdt-language-server/lombok.jar"
 local workspace = lsp_home .. "/workspace/" .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
@@ -26,12 +29,15 @@ local cmd = {
   "-data", workspace,
 }
 
+-- This needs to be manually installed and compiled - https://github.com/microsoft/vscode-java-debug
 local bundles = {
   vim.fn.glob(lsp_home .. "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
 }
+-- This needs to be manually installed and compiled - https://github.com/microsoft/vscode-java-test
 vim.list_extend(bundles, vim.split(vim.fn.glob(lsp_home .. "/vscode-java-test/server/*.jar"), "\n"))
+
 local on_attach = function(client, bufnr)
--- This is taken from the plugins.lsp file
+-- Generic on_attach with default keymap
   require('lsp-utils').on_attach(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, bufopts)
@@ -49,9 +55,11 @@ local on_attach = function(client, bufnr)
 end
 
 local lsp_flags = {
+  -- Nvim 0.7 default value
   debounce_text_changes = 150,
 }
 
+-- Require "hrsh7th/cmp-nvim-lua"
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local config = {

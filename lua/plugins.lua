@@ -159,7 +159,8 @@ packer.startup(
 
     -- cmd Line Completion source
     use { "hrsh7th/cmp-cmdline",
-      config = function() require("cmp").setup.cmdline(":", { sources = { name = "cmdline" } } ) end
+      requires = { "hrsh7th/nvim-cmp" },
+      config = require("plugins.cmp-cmdline"),
     }
 
         -- emoji Completion
@@ -183,22 +184,6 @@ packer.startup(
       },
       config = require("plugins.mason"),
     }
-
-    -- LSP Manager LSP Config link
-    -- use { "williamboman/mason-lspconfig.nvim",
-    --   config = function()
-    --     local mason_config = require("mason-lspconfig")
-    --     mason_config.setup({
-    --       ensure_installed = { "sumneko_lua" }
-    --     })
-    --     require("lsp")
-    --     mason_config.setup_handlers({
-    --       function(server_name)
-    --         require("lspconfig")[server_name].setup {}
-    --       end
-    --     })
-    --   end,
-    -- }
 
     -- LSP Symbols
     use { "stevearc/aerial.nvim",
@@ -227,6 +212,8 @@ packer.startup(
         { 'stevearc/aerial.nvim' },
         -- Notification integration
         { 'rcarriga/nvim-notify' },
+        -- DAP Integration
+        { "nvim-telescope/telescope-dap.nvim" },
       },
       module = "telescope",
       config = require("plugins.telescope"),
@@ -315,14 +302,37 @@ packer.startup(
       config = require("plugins.nvim-dap-ui")
     }
 
+    use { "rcarriga/cmp-dap",
+      requires = { "hrsh7th/nvim-cmp" },
+      config = require("plugins.cmp-dap"),
+    }
+
     use { "theHamsta/nvim-dap-virtual-text",
       requires = { "mfussenegger/nvim-dap" },
       config = require("plugins.nvim-dap-virtual-text")
     }
 
+    -- python DAP
+    use { "mfussenegger/nvim-dap-python",
+      requires = { "mfussenegger/nvim-dap" },
+      config = require("plugins.nvim-dap-python"),
+    }
+
     -- Java LSP
     use { "mfussenegger/nvim-jdtls" }
 
+    -- Rust LSP
+    use { "simrat39/rust-tools.nvim",
+      config = require("plugins.rust-tools"),
+    }
+
+    -- Telescope DAP extension
+    use { "nvim-telescope/telescope-dap.nvim",
+      requires = { { "mfussenegger/nvim-dap" } },
+    }
+
+    -- Telescope UI select
+    use { "nvim-telescope/telescope-ui-select.nvim" }
 
     -- After all plugins
     if packer_bootstrap then

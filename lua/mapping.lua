@@ -3,6 +3,7 @@ local utils = require("utils")
 local nmap = utils.nmap
 local map = utils.map
 local vmap = utils.vmap
+local bufmap = utils.bufmap
 
 -- General prefix
 local file_prefix = "f"
@@ -114,7 +115,29 @@ nmap("<leader>" .. zen_prefix .. "m", "<cmd>TZMinimalist<cr>", "Minimalist zend 
 nmap("<leader>" .. zen_prefix .. "a", "<cmd>TZAtaraxis<cr>", "Ataraxis zend mode")
 
 -- LSP
--- nmap("<leader>e", vim.diagnostic.open_float, "Open diagnostic")
 nmap("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
 nmap("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
+nmap("<leader>de", vim.diagnostic.open_float, "Open floating diagnostic")
+nmap("<leader>dq", vim.diagnostic.setloclist, "Huuuuum diagnostic thing I guess")
+
+-- DAP
+nmap("<F5>", function() require('dap').continue() end, "Start debugger or continue to next breakpoint")
+nmap("<F10>", function() require('dap').step_over() end, "Debugger - Step over")
+nmap("<F11>", function() require('dap').step_into() end, "Debugger - Step into")
+nmap("<F12>", function() require('dap').step_out() end, "Debugger - Step out")
+nmap("<leader>bb", function() require('dap').toggle_breakpoint() end, "Set breakpoint")
+nmap("<leader>bB", function() require('dap').toggle_breakpoint(vim.fn.input("Breakpoint condition: ")) end, "Set conditional breakpoint")
+nmap("<leader>bl", function() require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "Set log point")
+nmap("<leader>dr", function() require('dap').repl.open() end, "Open REPL")
+nmap("<leader>dl", function() require('dap').run_last() end, "Run last")
+
+-- Terminal mapping
+function _G.set_terminal_keymaps()
+  bufmap(true, "t", "<esc>", [[<C-\><C-n>]], "Escape terminal")
+  bufmap(true, "t", "jk", [[<C-\><C-n>]], "Escape terminal")
+  bufmap(true, "t", "<C-h>", [[<cmd>wincmd h<cr>]], "Terminal switch window left")
+  bufmap(true, "t", "<C-j>", [[<cmd>wincmd j<cr>]], "Terminal switch window down")
+  bufmap(true, "t", "<C-k>", [[<cmd>wincmd k<cr>]], "Terminal switch window up")
+  bufmap(true, "t", "<C-l>", [[<cmd>wincmd l<cr>]], "Terminal switch window right")
+end
 
