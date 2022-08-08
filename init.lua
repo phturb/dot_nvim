@@ -26,6 +26,7 @@ load_source("plugins")
 load_source("mapping")
 -- Import LSP
 load_source("lsp")
+-- Import DAP
+load_source("dap-config")
 -- Import autocmd
 load_source("autocmd")
-

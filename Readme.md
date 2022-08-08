@@ -24,7 +24,11 @@ List :
 - Rust - rust_analyzer
 - Java - jdtls
 - Python - jedi_language_server
-
+- HTML - html
+- CSS - jsonls
+- Terraform - terraformls
+- Bash - bashls
+- Go - gopls
 
 #### Java
 

@@ -318,6 +318,16 @@ packer.startup(
       config = require("plugins.nvim-dap-python"),
     }
 
+    -- go DAP
+    use { "leoluz/nvim-dap-go"}
+
+    -- Lua/nvim DAP
+    use { "jbyuki/one-small-step-for-vimkind" }
+
+    use { "mxsdev/nvim-dap-vscode-js",
+      requires = {"mfussenegger/nvim-dap"}
+    }
+
     -- Java LSP
     use { "mfussenegger/nvim-jdtls" }
 

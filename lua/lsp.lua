@@ -41,9 +41,15 @@ lspconfig["solargraph"].setup {
 -- Python - https://github.com/pappasam/jedi-language-server - jedi-language-server
 local python_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
-  utils.nmap("<leader>tm", function() require('dap-python').test_method() end, "Test method")
-  utils.nmap("<leader>tc", function() require('dap-python').test_class() end, "Test class")
-  utils.nmap("<leader>ts", function() require('dap-python').debug_selection() end, "Debug selection")
+  utils.nmap("<leader>tm", function()
+    require('dap-python').test_method {}
+  end, "Test method")
+  utils.nmap("<leader>tc", function()
+    require('dap-python').test_class {}
+  end, "Test class")
+  utils.nmap("<leader>ts", function()
+    require('dap-python').debug_selection {}
+  end, "Debug selection")
 end
 
 lspconfig["jedi_language_server"].setup {
@@ -109,3 +115,4 @@ lspconfig['terraformls'].setup {
   flags = lsp_flags,
   capabilities = capabilities,
 }
+
