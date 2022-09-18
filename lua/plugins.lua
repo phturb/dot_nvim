@@ -15,6 +15,11 @@ packer.startup(
     -- Impatient
     use {'lewis6991/impatient.nvim', config = [[require('impatient')]]}
 
+    -- Built-in LSP
+    use { "neovim/nvim-lspconfig",
+      event = "VimEnter",
+    }
+
     -- Popup api
     use 'nvim-lua/popup.nvim'
 
@@ -129,7 +134,7 @@ packer.startup(
 
     -- Completion engine
     use { "hrsh7th/nvim-cmp",
-      after = "friendly-snippets",
+      after = { "friendly-snippets", "nvim-treesitter"} ,
       config = require("plugins.nvim-cmp"),
     }
 
@@ -166,11 +171,6 @@ packer.startup(
         -- emoji Completion
     use { "hrsh7th/cmp-emoji",
       after = "cmp-path"
-    }
-
-    -- Built-in LSP
-    use { "neovim/nvim-lspconfig",
-      event = "VimEnter",
     }
 
     -- LSP Manager
@@ -238,6 +238,7 @@ packer.startup(
 
     -- Autopairs
     use { "windwp/nvim-autopairs",
+      after = { "nvim-treesitter" },
       requires = { "hrsh7th/nvim-cmp" },
       event = "InsertEnter",
       config = require("plugins.nvim-autopairs"),
@@ -303,6 +304,7 @@ packer.startup(
     }
 
     use { "rcarriga/cmp-dap",
+      after = "nvim-cmp",
       requires = { "hrsh7th/nvim-cmp" },
       config = require("plugins.cmp-dap"),
     }
@@ -333,6 +335,7 @@ packer.startup(
 
     -- Rust LSP
     use { "simrat39/rust-tools.nvim",
+      after = "nvim-lspconfig",
       config = require("plugins.rust-tools"),
     }
 
