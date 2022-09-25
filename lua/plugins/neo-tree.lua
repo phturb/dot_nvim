@@ -1,4 +1,5 @@
 return function()
+  vim.g.neo_tree_remove_legacy_commands = true
   local neotree = require("neo-tree")
   neotree.setup({
     close_if_last_window = true,

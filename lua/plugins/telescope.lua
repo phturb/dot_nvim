@@ -97,6 +97,7 @@ return function()
     pickers = {},
     extensions = {
       { "ui-select", require("telescope.themes").get_dropdown {} },
+      { "aerial", show_nesting=true },
     },
   })
   -- This needs to be after setup

@@ -70,8 +70,12 @@ nmap(">b", "<cmd>BufferLineMoveNext<cr>", "Move buffer tab right")
 nmap("<b", "<cmd>BufferLineMovePrev<cr>", "Move buffer tab left")
 
 -- Comment
-map("n", "<leader>/", function() require("Comment.api").toggle_current_linewise() end, "Comment line")
-vmap("<leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>", "Toggle comment line")
+map("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end, "Comment line")
+map("v", "<leader>/", function()
+  local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+  vim.api.nvim_feedkeys(esc, 'nx', false)
+  require('Comment.api').toggle.linewise(vim.fn.visualmode())
+end, "Toggle comment line")
 
 -- GitSigns
 map('n', "<leader>" .. git_prefix .. "j", function() require("gitsigns").next_hunk() end, "Next git hunk")

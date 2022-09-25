@@ -13,15 +13,12 @@ packer.startup(
     use "wbthomason/packer.nvim"
 
     -- Impatient
-    use {'lewis6991/impatient.nvim', config = [[require('impatient')]]}
-
-    -- Built-in LSP
-    use { "neovim/nvim-lspconfig",
-      event = "VimEnter",
+    use { 'lewis6991/impatient.nvim',
+      config = function() require('impatient') end
     }
 
     -- Popup api
-    use 'nvim-lua/popup.nvim'
+    use { 'nvim-lua/popup.nvim' }
 
     -- Indent detection
     use { 'Darazaki/indent-o-matic',
@@ -68,23 +65,15 @@ packer.startup(
       cmd = { "Bdelete", "Bwipeout" },
     }
 
-    -- Todo find what it is
+    -- Coroutine helper
     use { "nvim-lua/plenary.nvim" }
 
     -- File explorer
     use { "nvim-neo-tree/neo-tree.nvim",
       branch = "v2.x",
       module = "neo-tree",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "kyazdani42/nvim-web-devicons",
-        { "MunifTanjim/nui.nvim", module = "nui" },
-      },
       cmd = "Neotree",
-      setup = function()
-        vim.g.neo_tree_remove_legacy_commands = true
-      end,
-      config = require("plugins.neo-tree")
+      config = require("plugins.neo-tree"),
     }
 
     -- Statusline
@@ -118,59 +107,58 @@ packer.startup(
       config = require("plugins.nvim-treesitter")
     }
 
+    -- LSP Symbols
+    use { "stevearc/aerial.nvim",
+      config = require("plugins.aerial"),
+    }
+
     -- Snippets
     use { "rafamadriz/friendly-snippets",
       module = "cmp_nvim_lsp",
       event = "InsertEnter",
-      requires = "L3MON4D3/LuaSnip",
     }
 
     -- Snippet engine
     use { "L3MON4D3/LuaSnip",
-      wants = "friendly-snippets",
-      after = "nvim-cmp",
       config = require("plugins.LuaSnip"),
     }
 
     -- Completion engine
     use { "hrsh7th/nvim-cmp",
-      after = { "friendly-snippets", "nvim-treesitter"} ,
       config = require("plugins.nvim-cmp"),
     }
 
     -- Snippet completion source
     use { "saadparwaiz1/cmp_luasnip",
-      after = "LuaSnip",
     }
 
     use { "hrsh7th/cmp-nvim-lua",
-      after = "cmp_luasnip",
     }
 
     -- Buffer completion source
     use { "hrsh7th/cmp-buffer",
-      after = "cmp-nvim-lsp",
     }
 
     -- Path completion source
     use { "hrsh7th/cmp-path",
-      after = "cmp-buffer"
     }
 
     -- LSP Completion source
     use { "hrsh7th/cmp-nvim-lsp",
-      after = "cmp-nvim-lua"
     }
 
     -- cmd Line Completion source
     use { "hrsh7th/cmp-cmdline",
-      requires = { "hrsh7th/nvim-cmp" },
       config = require("plugins.cmp-cmdline"),
     }
 
         -- emoji Completion
     use { "hrsh7th/cmp-emoji",
-      after = "cmp-path"
+    }
+
+    -- Built-in LSP
+    use { "neovim/nvim-lspconfig",
+      event = "VimEnter",
     }
 
     -- LSP Manager
@@ -185,16 +173,7 @@ packer.startup(
       config = require("plugins.mason"),
     }
 
-    -- LSP Symbols
-    use { "stevearc/aerial.nvim",
-      module = "aerial",
-      cmd = {
-        "AerialToggle",
-        "AerialOpen",
-        "AerialInfo",
-      },
-      config = require("plugins.aerial"),
-    }
+
 
     -- Formatting and linting
     use { "jose-elias-alvarez/null-ls.nvim",
@@ -205,16 +184,6 @@ packer.startup(
     -- Telescope aka fuzzyfinder
     use { "nvim-telescope/telescope.nvim",
       cmd = "Telescope",
-      requires = {
-        -- Telescope Syntax support
-        { 'nvim-telescope/telescope-fzf-native.nvim' },
-        -- Aerial symbol
-        { 'stevearc/aerial.nvim' },
-        -- Notification integration
-        { 'rcarriga/nvim-notify' },
-        -- DAP Integration
-        { "nvim-telescope/telescope-dap.nvim" },
-      },
       module = "telescope",
       config = require("plugins.telescope"),
     }
@@ -238,8 +207,6 @@ packer.startup(
 
     -- Autopairs
     use { "windwp/nvim-autopairs",
-      after = { "nvim-treesitter" },
-      requires = { "hrsh7th/nvim-cmp" },
       event = "InsertEnter",
       config = require("plugins.nvim-autopairs"),
     }
@@ -253,8 +220,6 @@ packer.startup(
 
     -- Commenting
     use { "numToStr/Comment.nvim",
-      requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
-      module = { "Comment", "Comment.api" },
       keys = { "gc", "gb", "g<", "g>" },
       config = require("plugins.Comment")
     }
@@ -289,7 +254,6 @@ packer.startup(
 
     -- Dashboard
     use { 'goolord/alpha-nvim',
-      requires = { "kyazdani42/nvim-web-devicons" },
       config = require("plugins.alpha-nvim")
     }
 
@@ -298,26 +262,21 @@ packer.startup(
 
     -- DAP UI
     use { "rcarriga/nvim-dap-ui",
-      requires = { "mfussenegger/nvim-dap" },
       module = "dapui",
       config = require("plugins.nvim-dap-ui")
     }
 
     use { "rcarriga/cmp-dap",
-      after = "nvim-cmp",
-      requires = { "hrsh7th/nvim-cmp" },
-      config = require("plugins.cmp-dap"),
+      config = require("plugins.cmp-dap")
     }
 
     use { "theHamsta/nvim-dap-virtual-text",
-      requires = { "mfussenegger/nvim-dap" },
       config = require("plugins.nvim-dap-virtual-text")
     }
 
     -- python DAP
     use { "mfussenegger/nvim-dap-python",
-      requires = { "mfussenegger/nvim-dap" },
-      config = require("plugins.nvim-dap-python"),
+      config = require("plugins.nvim-dap-python")
     }
 
     -- go DAP
@@ -327,7 +286,6 @@ packer.startup(
     use { "jbyuki/one-small-step-for-vimkind" }
 
     use { "mxsdev/nvim-dap-vscode-js",
-      requires = {"mfussenegger/nvim-dap"}
     }
 
     -- Java LSP
@@ -335,13 +293,11 @@ packer.startup(
 
     -- Rust LSP
     use { "simrat39/rust-tools.nvim",
-      after = "nvim-lspconfig",
       config = require("plugins.rust-tools"),
     }
 
     -- Telescope DAP extension
     use { "nvim-telescope/telescope-dap.nvim",
-      requires = { { "mfussenegger/nvim-dap" } },
     }
 
     -- Telescope UI select
