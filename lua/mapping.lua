@@ -122,7 +122,7 @@ nmap("<leader>" .. zen_prefix .. "a", "<cmd>TZAtaraxis<cr>", "Ataraxis zend mode
 nmap("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
 nmap("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
 nmap("<leader>de", vim.diagnostic.open_float, "Open floating diagnostic")
-nmap("<leader>dq", vim.diagnostic.setloclist, "Huuuuum diagnostic thing I guess")
+nmap("<leader>dq", vim.diagnostic.setloclist, "Diagnostic list")
 
 -- DAP
 nmap("<F5>", function() require('dap').continue() end, "Start debugger or continue to next breakpoint")
