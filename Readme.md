@@ -4,6 +4,8 @@
 
 - NeoVim >=0.7
 - npm
+- ripgrep - https://github.com/BurntSushi/ripgrep
+- A nerd font
 
 To make it work, there are some additional manual configuration that must be done
 
