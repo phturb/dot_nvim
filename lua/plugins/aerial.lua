@@ -7,7 +7,7 @@ return function()
       "treesitter",
       "markdown"
     },
-    min_width = 28,
+    layour = { min_width = 28 },
     show_guides = true,
     filter_kind = false,
     icons = {
