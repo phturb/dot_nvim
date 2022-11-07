@@ -1,4 +1,5 @@
 return function()
   local null_ls = require("null-ls")
-  null_ls.setup()
+  local sources = { null_ls.builtins.formatting.prettier, }
+  null_ls.setup({ sources = sources })
 end

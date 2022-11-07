@@ -17,6 +17,9 @@ packer.startup(
       config = function() require('impatient') end
     }
 
+    -- Built-in LSP
+    use { "neovim/nvim-lspconfig" }
+
     -- Popup api
     use { 'nvim-lua/popup.nvim' }
 
@@ -156,10 +159,6 @@ packer.startup(
     use { "hrsh7th/cmp-emoji",
     }
 
-    -- Built-in LSP
-    use { "neovim/nvim-lspconfig",
-      event = "VimEnter",
-    }
 
     -- LSP Manager
     use { "williamboman/mason.nvim",
