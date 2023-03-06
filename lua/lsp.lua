@@ -10,7 +10,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Lua - https://github.com/sumneko/lua-language-server - lua-language-server
-lspconfig["sumneko_lua"].setup {
+lspconfig["lua_ls"].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,

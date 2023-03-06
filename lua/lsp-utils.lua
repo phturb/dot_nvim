@@ -28,7 +28,6 @@ function M.on_attach(client, bufnr)
   bufnmap(bufnr, M.code_action_keybind, vim.lsp.buf.code_action, "LSP - Code Actions")
   -- bufnmap(bufnr, 'gr', vim.lsp.buf.references, "LSP - References")
   bufnmap(bufnr, 'gr', function() require('telescope.builtin').lsp_references() end, "LSP - References")
-  require('aerial').on_attach(client, bufnr)
 end
 
 return M
