@@ -2,6 +2,7 @@ return function()
   local cmp_status_ok, cmp = pcall(require, "cmp")
   local snip_status_ok, luasnip = pcall(require, "luasnip")
   if not (cmp_status_ok and snip_status_ok) then return end
+  luasnip.config.setup({})
   local kind_icons = {
     Text = "",
     Method = "",
@@ -45,6 +46,7 @@ return function()
     snippet = {
       expand = function(args) luasnip.lsp_expand(args.body) end,
     },
+    completion = { completeopt = 'menu,menuone,noinsert' },
     window = {
       completion = {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },

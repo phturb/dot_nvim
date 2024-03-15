@@ -144,4 +144,3 @@ function _G.set_terminal_keymaps()
   bufmap(true, "t", "<C-k>", [[<cmd>wincmd k<cr>]], "Terminal switch window up")
   bufmap(true, "t", "<C-l>", [[<cmd>wincmd l<cr>]], "Terminal switch window right")
 end
-

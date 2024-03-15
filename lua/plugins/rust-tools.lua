@@ -34,12 +34,5 @@ return function()
         vim.keymap.set("n", "<leader>jl", rust_tools.join_lines.join_lines, bufopts)
       end
     },
-    dap = {
-      adapter = {
-        type = "executable",
-        command = "lldb-vscode",
-        name = "rt_lldb"
-      }
-    }
   })
 end

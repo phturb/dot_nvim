@@ -11,4 +11,3 @@ colors = {
   turquoise = "#56B6C2",
   grey = "#ABB2BF",
 }
-

@@ -115,4 +115,3 @@ lspconfig['terraformls'].setup {
   flags = lsp_flags,
   capabilities = capabilities,
 }
-
